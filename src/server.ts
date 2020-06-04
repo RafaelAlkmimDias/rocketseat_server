@@ -2,14 +2,41 @@ import express from 'express';
 
 const app = express();
 
-app.get('/users',(request,response) => {
-   console.log('Hello word'); 
+app.use(express.json());
 
-   response.json([
-       'Hello Word',
-       'Teste',
-       'Arroz'
-    ]);
+const users = [
+    'Hello Word',
+    'Teste',
+    'Arroz'
+ ]
+
+ // query param
+app.get('/users',(request,response) => {
+   const search = String(request.query.search);
+
+   const filteredUsers =  (search != "undefined") ? users.filter(user => user.includes(search)) : users;    
+
+   return response.json(filteredUsers);
 });
+
+// request param
+app.get('/users/:id', (request, response) => {
+    const id = Number(request.params.id);
+    const user = users[id];
+
+    return response.json(user)
+})
+
+//request body
+app.post('/users',(request,response) => {
+    const data = request.body;
+
+    const user = {
+        "name": data.name,
+        "email": data.email
+    }
+
+    return response.json(user);
+})
 
 app.listen(3333);
