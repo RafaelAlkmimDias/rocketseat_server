@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev src/server.ts"
+    "dev": "ts-node-dev src/server.ts",
+    "knex:migrate": "knex migrate:latest --knexfile knexfile.ts migrate:latest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,8 @@
   "homepage": "https://github.com/RafaelAlkmimDias/rocketseat_server#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "knex": "^0.21.1",
+    "sqlite3": "^4.2.0",
     "typescript": "^3.9.3"
   },
   "devDependencies": {
