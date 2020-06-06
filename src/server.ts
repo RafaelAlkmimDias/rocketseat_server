@@ -5,11 +5,7 @@ const app = express();
 app.get('/users',(request,response) => {
    console.log('Hello word'); 
 
-   response.json([
-       'Hello Word',
-       'Teste',
-       'Arroz'
-    ]);
+   response.send('Hello Word');
 });
 
 app.listen(3333);
